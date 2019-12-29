@@ -6,9 +6,6 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
-  working-directory: 
-    description: 'The directory of the caller'
-    required: true
 outputs:
   time: # id of output
     description: 'The time we greeted you'
@@ -16,9 +13,10 @@ outputs:
     description: 'The operating system that ran your action'
   file:
     description: 'Path to file generated in action shared with caller'
+  message:
+    description: 'The hello message put together by the action'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.who-to-greet }}
-    - ${{ inputs.working-directory }}
