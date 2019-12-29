@@ -10,9 +10,9 @@ ls -l $shared_files
 message="Hello $who_to_greet"
 
 file="$shared_files/hello-world.txt"
-echo $message > $file
+echo "$message" > $file
 ls -l $file
-
+ls -l $shared_files
 echo $message
 time=$(date)
 tag=refs/tags/1.1.0-rc.3
