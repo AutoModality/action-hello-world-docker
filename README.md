@@ -17,6 +17,10 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 The time we greeted you.
 
+### `os`
+
+The operating system that ran the action.
+
 ## Example usage
 
 uses: actions/hello-world-docker-action@v1
