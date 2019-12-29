@@ -1,13 +1,15 @@
 #!/bin/sh -l
 
 who_to_greet=$1
-working_directory=$2
+shared_files=$2
 
 echo "docker pwd $(pwd)"
-echo "workflow workspace $working_directory"
+echo "shared files $shared_files"
+ls -l $shared_files
 
-touch hello-world.txt
-file="$working_directory/hello-world.txt"
+file="$shared_files/hello-world.txt"
+touch $file
+ls -l $file
 
 echo "Hello $who_to_greet"
 time=$(date)
