@@ -7,7 +7,7 @@ echo "docker pwd $(pwd)"
 echo "workflow workspace $working_directory"
 
 touch hello-world.txt
-file="$workding_directory/hello-world.txt"
+file="$working_directory/hello-world.txt"
 
 echo "Hello $who_to_greet"
 time=$(date)
