@@ -7,11 +7,13 @@ echo "docker pwd $(pwd)"
 echo "shared files $shared_files"
 ls -l $shared_files
 
+message="Hello $who_to_greet"
+
 file="$shared_files/hello-world.txt"
-touch $file
+echo $message > $file
 ls -l $file
 
-echo "Hello $who_to_greet"
+echo $message
 time=$(date)
 tag=refs/tags/1.1.0-rc.3
 echo ::set-output name=time::$time
