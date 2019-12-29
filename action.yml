@@ -6,6 +6,9 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
+  staging-dir: 
+    description: 'Where the shared files should go'
+    required: true
 outputs:
   time: # id of output
     description: 'The time we greeted you'
@@ -20,3 +23,5 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.who-to-greet }}
+    - ${{ inputs.staging-dir }}
+
