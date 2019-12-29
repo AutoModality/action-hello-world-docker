@@ -6,6 +6,9 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
+  working-directory: 
+    description: 'The directory of the caller'
+    required: true
 outputs:
   time: # id of output
     description: 'The time we greeted you'
@@ -16,3 +19,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.who-to-greet }}
+    - ${{ inputs.working-directory }}
