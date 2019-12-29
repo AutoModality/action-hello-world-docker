@@ -14,6 +14,8 @@ outputs:
     description: 'The time we greeted you'
   os: 
     description: 'The operating system that ran your action'
+  file:
+    description: 'Path to file generated in action shared with caller'
 runs:
   using: 'docker'
   image: 'Dockerfile'
