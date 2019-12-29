@@ -14,4 +14,6 @@ jobs:
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
+    - name: Get the output os
+      run: echo "The os was ${{ steps.hello.outputs.os }}"
 
