@@ -1,6 +1,10 @@
 name: Hello World Action
-on: [push]
-
+on: 
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
@@ -18,4 +22,6 @@ jobs:
       run: echo "The os was ${{ steps.hello.outputs.os }}"
     - name: Who triggered the action
       run: echo "The action was triggerd by $GITHUB_ACTOR"
+    - name: The github ref
+      run: echo "The branch or tag ref $GITHUB_REF"
 
