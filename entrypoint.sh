@@ -13,9 +13,10 @@ file="hello-world.txt"
 file_path="$staging_dir/$file"
 
 echo "Saving $message to $file_path"
-echo "$message" > $file
+echo "$message" > $file_path
+cat $file_path
 
-ls -l /github/home
+ls -l $staging_dir
 
 
 time=$(date)
