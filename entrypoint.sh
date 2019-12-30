@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 who_to_greet=$1
-staging_dir=/github/home
+staging_dir=$2
 
 echo "docker pwd $(pwd)"
 
