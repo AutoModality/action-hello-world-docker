@@ -13,10 +13,8 @@ file="hello-world.txt"
 file_path="$staging_dir/$file"
 echo "$message" > $file
 
-pwd
-ls -l $staging_dir
-ls -l /
-ls -l /home
+ls -l /github
+ls -l /github/home
 
 echo "Saving $message to $file_path"
 
