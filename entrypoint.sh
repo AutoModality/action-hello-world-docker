@@ -12,9 +12,10 @@ file_path="$staging_dir/$file"
 echo "Saving $message to $file_path"
 echo "$message" > $file_path
 
+# see docker -v mapping /github/home to /home/runner/work/_temp/_github_home
+# github/home is avalable to actions, but not to the workflow
 workflow_file_path="/home/runner/work/_temp/_github_home/$file"
 time=$(date)
-tag=refs/tags/1.1.0-rc.3
 
 echo ::set-output name=message::$message
 echo ::set-output name=time::$time
