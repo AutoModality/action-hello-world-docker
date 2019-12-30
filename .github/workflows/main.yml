@@ -17,6 +17,7 @@ jobs:
         who-to-greet: 'AutoModality'
         staging-dir: '${{ ::add-path:: }}'
     # Use the output from the `hello` step
+    - run: echo "::add-path::/path/to/dir"
     - name: Get the message
       run: echo "The message is ${{ steps.hello.outputs.message }}"
     - name: Get the output time
