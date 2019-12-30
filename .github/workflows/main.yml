@@ -15,7 +15,7 @@ jobs:
       uses: AutoModality/action-hello-world-docker@master
       with:
         who-to-greet: 'AutoModality'
-        staging-dir: '${{ github.workspace }}'
+        staging-dir: '${{ github.home }}'
     # Use the output from the `hello` step
     - run: echo "::add-path::/path/to/dir"
     - name: Get the message
