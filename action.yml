@@ -24,4 +24,3 @@ runs:
   args:
     - ${{ inputs.who-to-greet }}
     - ${{ inputs.staging-dir }}
-
