@@ -17,11 +17,17 @@ jobs:
         dry_run: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Current Branch
+      id: current
+      uses: ypicard/get-branch-name-github-action@v1
+    - name: Branch and Tag
+      run: echo branch=${{ steps.current.outputs.branch }} tag=${{ steps.current.outputs.tag }}
     - name: Generate build number
       if: steps.semantic.outputs.new_release_published == 'true'
       id: buildnumber
       uses: einaregilsson/build-number@v2 
       with:
+        branch: ${{ steps.current.outputs.branch }}
         token: ${{secrets.github_token}}
     - name: Release Candidate Found
       if: steps.semantic.outputs.new_release_published == 'true'
