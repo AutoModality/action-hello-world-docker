@@ -19,7 +19,7 @@ jobs:
     - name: Release Candidate Found
       run: |
         # {PR #}-{Issue Key}.{build number}
-        echo version ${{ github.event.number }}-${{ github.event.pull_request.head.ref }}.${{ steps.buildnumber.outputs.build_number }}
+        echo version ${{ github.event.number }}.${{ github.event.pull_request.head.ref }}.${{ steps.buildnumber.outputs.build_number }}
 
 
 
