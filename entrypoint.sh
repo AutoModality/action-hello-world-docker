@@ -5,7 +5,6 @@ staging_dir=/github/home
 
 message="Hello $who_to_greet"
 
-
 file="hello-world.txt"
 file_path="$staging_dir/$file"
 
