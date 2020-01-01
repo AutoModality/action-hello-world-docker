@@ -34,9 +34,8 @@ jobs:
       run: echo "The file is ${{ steps.hello.outputs.file }}"
     - run: cat ${{ steps.hello.outputs.file }}
     - name: Semantic Release
+      id: semantic   # `id` for output variables
       uses: cycjimmy/semantic-release-action@master
-      with:
-        dry_run: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Release Versions
