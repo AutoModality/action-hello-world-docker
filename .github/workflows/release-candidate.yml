@@ -14,17 +14,10 @@ jobs:
       id: semantic   # `id` for output variables
       uses: cycjimmy/semantic-release-action@master
       with:
+        branch: ${{ github.event.pull_request.head.ref }}
         dry_run: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Current Branch
-      id: current
-      uses: aroller/get-branch-name-github-action@1-pr-branch
-    - name: Branch and Tag
-      run: echo branch=${{ steps.current.outputs.branch }} tag=${{ steps.current.outputs.tag }}
-    - name: Git Debugging
-      run: |
-          git branch
     - name: Generate build number
       if: steps.semantic.outputs.new_release_published == 'true'
       id: buildnumber
