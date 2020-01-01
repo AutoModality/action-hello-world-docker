@@ -19,7 +19,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Current Branch
       id: current
-      uses: ypicard/get-branch-name-github-action@v1
+      uses: aroller/get-branch-name-github-action@1-pr-branch
     - name: Branch and Tag
       run: echo branch=${{ steps.current.outputs.branch }} tag=${{ steps.current.outputs.tag }}
     - name: Generate build number
