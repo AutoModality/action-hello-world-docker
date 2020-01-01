@@ -10,25 +10,16 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1      
-    - name: Semantic Release
-      id: semantic   # `id` for output variables
-      uses: cycjimmy/semantic-release-action@master
-      with:
-        branch: ${{ github.event.pull_request.head.ref }}
-        dry_run: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Generate build number
-      if: steps.semantic.outputs.new_release_published == 'true'
       id: buildnumber
       uses: einaregilsson/build-number@v2 
       with:
         branch: ${{ steps.current.outputs.branch }}
         token: ${{secrets.github_token}}
     - name: Release Candidate Found
-      if: steps.semantic.outputs.new_release_published == 'true'
       run: |
-        echo version ${{ steps.semantic.outputs.new_release_version }}-build.${{ steps.buildnumber.outputs.build_number }}
+        # {PR #}-{Issue Key}.{build number}
+        echo version ${{ github.event.number }}-${{ github.event.pull_request.head.ref }}.${{ steps.buildnumber.outputs.build_number }}
 
 
 
