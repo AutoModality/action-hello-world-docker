@@ -1,6 +1,8 @@
 # action-hello-world-docker
 From [Github's Example Documentation](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-a-docker-container-action) 
 
+Use this project to test and demonstrate anything with Github Actions.
+
 # Hello world docker action
 
 This action prints "Hello World" or "Hello" + the name of a person to greet to the log.

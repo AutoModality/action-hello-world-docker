@@ -17,6 +17,7 @@ echo "$message" > $file_path
 workflow_file_path="/home/runner/work/_temp/_github_home/$file"
 time=$(date)
 
+# Outputs
 echo ::set-output name=message::$message
 echo ::set-output name=time::$time
 echo ::set-output name=os::$OSTYPE
