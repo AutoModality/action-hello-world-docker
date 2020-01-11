@@ -6,13 +6,18 @@ jobs:
     name: Caching for Docker
     steps:
       - name: Cache docker images
+        id: docker-cache
         uses: actions/cache@v1
         with:
           path: ~/
           key: docker
-      - run: docker load --input ~/alpine
+      - name: Load docker from cache
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: docker load --input ~/alpine
       - run: docker run -t alpine echo hello  
-      - run: docker save --output ~/alpine alpine
+      - name: Save to cache if needed
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: docker save --output ~/alpine alpine
 
 
 
