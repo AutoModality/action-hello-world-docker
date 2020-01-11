@@ -5,6 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Caching for Docker
     steps:
+      - name: Cache docker images
+        uses: actions/cache@v1
+        with:
+          path: /var/lib/docker
       - run: docker run -t alpine echo hello  
 
 
