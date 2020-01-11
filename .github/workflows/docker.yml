@@ -8,11 +8,11 @@ jobs:
       - name: Cache docker images
         uses: actions/cache@v1
         with:
-          path: ~/docker
+          path: ~/
           key: docker
       #- run: docker load --quiet --input ~/docker/alpine
       - run: docker run -t alpine echo hello  
-      - run: docker save --output ~/docker/alpine alpine
+      - run: docker save --output ~/alpine alpine
 
 
 
