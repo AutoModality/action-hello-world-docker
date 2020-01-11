@@ -12,7 +12,7 @@ jobs:
           key: docker
       #- run: docker load --quiet --input ~/docker/alpine
       - run: docker run -t alpine echo hello  
-      - run: docker save --quiet --output ~/docker/alpine
+      - run: docker save --output ~/docker/alpine
 
 
 
