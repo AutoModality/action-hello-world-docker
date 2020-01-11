@@ -10,7 +10,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/
-          key: docker
+          key: docker1
       - name: Load docker from cache
         if: steps.cache.outputs.cache-hit == 'true'
         run: docker load --input ~/alpine
