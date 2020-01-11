@@ -10,7 +10,7 @@ jobs:
         with:
           path: ~/
           key: docker
-      #- run: docker load --quiet --input ~/docker/alpine
+      - run: docker load --input ~/alpine
       - run: docker run -t alpine echo hello  
       - run: docker save --output ~/alpine alpine
 
