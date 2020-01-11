@@ -1,0 +1,11 @@
+name: Docker Practice
+on: push
+jobs:
+  caching:
+    runs-on: ubuntu-latest
+    name: Caching for Docker
+    steps:
+      - run: docker run -t alpine echo hello  
+
+
+
