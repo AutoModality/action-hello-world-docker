@@ -14,8 +14,8 @@ jobs:
       - name: Load docker from cache
         if: steps.docker-cache.outputs.cache-hit == 'true'
         run: |
-          docker load --input ~/docker/alpine.tar.gz
           ls -l ~/docker
+          docker load --input ~/docker/alpine.tar.gz
       - run: docker run -t alpine echo hello  
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
