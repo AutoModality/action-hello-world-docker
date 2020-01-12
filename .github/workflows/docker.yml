@@ -4,25 +4,32 @@ jobs:
   caching:
     runs-on: ubuntu-latest
     name: Caching for Docker
+    env:
+      docker-image: alpine
+      docker-tag: 3.10
+      docker-image-tag: ${docker-image}:${docker-tag}
+      docker-image-path: ${docker-image}:${docker-tag}
+      docker-cache-dir: ~/docker
+      docker-filename: ~/docker/${docker-image}.tar.gz
     steps:
       - uses: actions/checkout@v1   
       - name: Cache docker images
         id: docker-cache
         uses: actions/cache@v1
         with:
-          path: ~/docker
-          key: docker9
+          path: ${docker-cache-dir}
+          key: docker10
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
-          mkdir -p ~/docker
-          docker save --output ~/docker/alpine.tar.gz alpine:3.10
-          ls -l ~/docker
+          mkdir -p ${docker-cache-dir}
+          docker save --output ${docker-filename} ${docker-image-path}
+          ls -l ${docker-cache-dir}
       - name: Load docker from cache
         run: |
-          ls -l ~/docker
-          docker load --input ~/docker/alpine.tar.gz
-      - run: docker run -t alpine:3.10 echo hello  
+          ls -l ${docker-cache-dir}
+          docker load --input ${docker-filename}
+      - run: docker run -t ${docker-image-tag} echo hello  
       - name: Local docker action uses cache
         uses: ./ #uses alpine in the action's Dockerfile
       # enable to demonstrate external actions eager building
