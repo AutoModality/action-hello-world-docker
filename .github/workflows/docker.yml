@@ -11,7 +11,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/docker
-          key: docker5
+          key: docker6
       - name: Load docker from cache
         if: steps.docker-cache.outputs.cache-hit == 'true'
         run: |
@@ -26,8 +26,9 @@ jobs:
       - run: docker run -t alpine echo hello  
       - name: Local docker action uses cache
         uses: ./ #uses alpine in the action's Dockerfile
-      - name: External docker action should use cache
-        uses: AutoModality/action-hello-world-docker@v1 
+      # enable to demonstrate external actions eager building
+      # - name: External docker action should use cache
+      #   uses: AutoModality/action-hello-world-docker@v1 
 
 
 
