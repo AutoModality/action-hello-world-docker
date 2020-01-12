@@ -11,23 +11,24 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/docker
-          key: docker4
+          key: docker5
       - name: Load docker from cache
         if: steps.docker-cache.outputs.cache-hit == 'true'
         run: |
           ls -l ~/docker
           docker load --input ~/docker/alpine.tar.gz
-      - run: docker run -t alpine echo hello  
-      - name: Local docker action uses cache
-        uses: ./ #uses alpine in the action's Dockerfile
-      - name: External docker action should use cache
-        uses: AutoModality/action-hello-world-docker@v1 
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p ~/docker
           docker save --output ~/docker/alpine.tar.gz alpine
           ls -l ~/docker
+      - run: docker run -t alpine echo hello  
+      - name: Local docker action uses cache
+        uses: ./ #uses alpine in the action's Dockerfile
+      - name: External docker action should use cache
+        uses: AutoModality/action-hello-world-docker@v1 
+
 
 
 
