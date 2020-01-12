@@ -1,0 +1,28 @@
+name: Docker Practice
+on: push
+jobs:
+  caching:
+    runs-on: ubuntu-latest
+    name: Caching for Docker
+    steps:
+      - name: Cache docker images
+        id: docker-cache
+        uses: actions/cache@v1
+        with:
+          path: ~/docker
+          key: docker4
+      - name: Load docker from cache
+        if: steps.docker-cache.outputs.cache-hit == 'true'
+        run: |
+          ls -l ~/docker
+          docker load --input ~/docker/alpine.tar.gz
+      - run: docker run -t alpine echo hello  
+      - name: Save to cache if needed
+        if: steps.docker-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/docker
+          docker save --output ~/docker/alpine.tar.gz alpine
+          ls -l ~/docker
+
+
+
