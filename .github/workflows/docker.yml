@@ -5,29 +5,27 @@ jobs:
     runs-on: ubuntu-latest
     name: Caching for Docker
     env:
-      docker-image: alpine
-      docker-tag: 3.10
-      docker-image-tag: $docker-image:$docker-tag
-      docker-image-path: $docker-image:$docker-tag
-      docker-cache-dir: ~/docker
-      docker_cache_dir: ~/docker
-      docker-filename: $docker-cache-dir/$docker-image.tar.gz
+      DOCKER_IMAGE: alpine
+      DOCKER_TAG: 3.10
+      DOCKER_IMAGE_TAG: $DOCKER_IMAGE:$DOCKER_TAG
+      DOCKER_IMAGE_PATH: $DOCKER_IMAGE_PATH:$DOCKER_TAG
+      DOCKER_CACHE_DIR: ~/docker
+      DOCKER_FILENAME: $DOCKER_CACHE_DIR/$DOCKER_IMAGE.tar.gz
     steps:
       - uses: actions/checkout@v1   
       - name: Cache docker images
         id: docker-cache
         uses: actions/cache@v1
         with:
-          path: "$docker-cache-dir"
+          path: $DOCKER_CACHE_DIR
           key: docker10
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
-          echo "hyphens: $docker-cache-dir"
-          echo "underscores: $docker_cache_dir"
-          echo no quotes $docker_cache_dir
-          mkdir -p $docker-cache-dir
-          docker save --output $docker-filename $docker-image-path
+          echo cache dir = $DOCKER_CACHE_DIR
+          echo filename = $DOCKER_FILENAME
+          mkdir -p $DOCKER_CACHE_DIR
+          docker save --output $DOCKER_FILENAME $docker-image-path
           ls -l $docker-cache-dir
       - name: Load docker from cache
         run: |
