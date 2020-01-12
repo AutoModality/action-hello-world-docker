@@ -18,7 +18,7 @@ jobs:
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
           docker save --output ~/docker.tar.gz $DOCKER_IMAGE
-          ls ~/
+          ls -l ~/
       - name: Load docker from cache
         run: |
           docker load --input  ~/docker.tar.gz
