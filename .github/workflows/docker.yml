@@ -10,6 +10,8 @@ jobs:
       docker-image-tag: $docker-image:$docker-tag
       docker-image-path: $docker-image:$docker-tag
       docker-cache-dir: ~/docker
+      docker_cache_dir: ~/docker
+      docker-filename: $docker-cache-dir/$docker-image.tar.gz
       docker-filename: $docker-cache-dir/$docker-image.tar.gz
     steps:
       - uses: actions/checkout@v1   
@@ -17,12 +19,14 @@ jobs:
         id: docker-cache
         uses: actions/cache@v1
         with:
-          path: $docker-cache-dir
+          path: "$docker-cache-dir"
           key: docker10
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
-          echo $docker-cache-dir
+          echo "hyphens: $docker-cache-dir"
+          echo "underscores: $docker_cache_dir"
+          echo no quotes $docker_cache_dir
           mkdir -p $docker-cache-dir
           docker save --output $docker-filename $docker-image-path
           ls -l $docker-cache-dir
