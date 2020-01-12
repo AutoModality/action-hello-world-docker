@@ -9,7 +9,7 @@ jobs:
       DOCKER_FILENAME: ~/docker-alpine-3.10.tar.gz
     steps:
       - uses: actions/checkout@v1   
-      - name: Cache docker images
+      - name: Cache setup for Docker
         id: docker-cache
         uses: actions/cache@v1
         with:
@@ -19,7 +19,8 @@ jobs:
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p ~/docker
-          docker save --output ~/docker-alpine-3.10.tar.gz $DOCKER_IMAGE
+          docker save --output $DOCKER_FILENAME $DOCKER_IMAGE
+        shell: bash
       - name: Load docker from cache
         run: |
           docker load --input $DOCKER_FILENAME
