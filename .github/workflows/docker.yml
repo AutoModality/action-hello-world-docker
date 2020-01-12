@@ -10,7 +10,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/docker
-          key: docker3
+          key: docker4
       - name: Load docker from cache
         if: steps.docker-cache.outputs.cache-hit == 'true'
         run: |
@@ -21,7 +21,7 @@ jobs:
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p ~/docker
-          docker save --output ~/alpine.tar.gz alpine
+          docker save --output ~/docker/alpine.tar.gz alpine
           ls -l ~/docker
 
 
