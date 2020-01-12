@@ -21,7 +21,7 @@ jobs:
       - name: Local docker action uses cache
         uses: ./ #uses alpine in the action's Dockerfile
       - name: External docker action should use cache
-        uses: /actoins/action-hello-world-docker 
+        uses: /actoins/action-hello-world-docker@v1 
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
