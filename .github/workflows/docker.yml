@@ -22,7 +22,7 @@ jobs:
         run: |
           ls -l ~/docker
           docker load --input ~/docker/alpine.tar.gz
-      - run: docker run -t alpine echo hello  
+      - run: docker run -t alpine:3.10 echo hello  
       - name: Local docker action uses cache
         uses: ./ #uses alpine in the action's Dockerfile
       # enable to demonstrate external actions eager building
