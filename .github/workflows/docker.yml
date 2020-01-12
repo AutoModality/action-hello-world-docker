@@ -12,15 +12,16 @@ jobs:
         id: docker-cache
         uses: actions/cache@v1
         with:
-          path: ~/docker-alpine-3.10.tar.gz
-          key: apline-1
+          path: ~/docker.tar.gz
+          key: docker11
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
-          docker save --output ~/docker-alpine-3.10.tar.gz $DOCKER_IMAGE
+          docker save --output ~/docker.tar.gz $DOCKER_IMAGE
+          ls ~/
       - name: Load docker from cache
         run: |
-          docker load --input  ~/docker-alpine-3.10.tar.gz
+          docker load --input  ~/docker.tar.gz
       - run: docker run -t $DOCKER_IMAGE echo hello  
       - name: Local docker action uses cache
         uses: ./ #uses alpine in the action's Dockerfile
