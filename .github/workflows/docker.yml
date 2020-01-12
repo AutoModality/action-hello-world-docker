@@ -11,12 +11,12 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/docker
-          key: docker7
+          key: docker8
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p ~/docker
-          docker save --output ~/docker/alpine.tar.gz alpine
+          docker save --output ~/docker/alpine.tar.gz alpine:3.10
           ls -l ~/docker
       - name: Load docker from cache
         run: |
