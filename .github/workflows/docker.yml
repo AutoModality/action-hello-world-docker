@@ -10,7 +10,7 @@ jobs:
       docker-image-tag: ${docker-image}:${docker-tag}
       docker-image-path: ${docker-image}:${docker-tag}
       docker-cache-dir: ~/docker
-      docker-filename: ~/docker/${docker-image}.tar.gz
+      docker-filename: $docker-cache-dir/$docker-image.tar.gz
     steps:
       - uses: actions/checkout@v1   
       - name: Cache docker images
@@ -22,7 +22,7 @@ jobs:
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
-          mkdir -p ${docker-cache-dir}
+          mkdir -p $docker-cache-dir
           docker save --output ${docker-filename} ${docker-image-path}
           ls -l ${docker-cache-dir}
       - name: Load docker from cache
