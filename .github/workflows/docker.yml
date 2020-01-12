@@ -6,7 +6,6 @@ jobs:
     name: Caching for Docker
     env:
       DOCKER_IMAGE: alpine:3.10
-      DOCKER_FILENAME: ~/docker-alpine-3.10.tar.gz
     steps:
       - uses: actions/checkout@v1   
       - name: Cache setup for Docker
