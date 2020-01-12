@@ -12,7 +12,6 @@ jobs:
       docker-cache-dir: ~/docker
       docker_cache_dir: ~/docker
       docker-filename: $docker-cache-dir/$docker-image.tar.gz
-      docker-filename: $docker-cache-dir/$docker-image.tar.gz
     steps:
       - uses: actions/checkout@v1   
       - name: Cache docker images
