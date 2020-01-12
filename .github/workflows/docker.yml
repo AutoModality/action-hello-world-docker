@@ -13,8 +13,8 @@ jobs:
         id: docker-cache
         uses: actions/cache@v1
         with:
-          path: $DOCKER_FILENAME
-          key: $$DOCKER_IMAGE
+          path: ${{ DOCKER_FILENAME }}
+          key: $DOCKER_IMAGE
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
