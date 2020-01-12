@@ -13,7 +13,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/docker.tar.gz
-          key: docker11
+          key: docker12
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
