@@ -12,11 +12,11 @@ jobs:
           path: ~/docker
           key: docker2
       - name: Load docker from cache
-        if: steps.cache.outputs.cache-hit == 'true'
+        if: steps.docker-cache.outputs.cache-hit == 'true'
         run: docker load --input ~/docker/alpine.tar.gz
       - run: docker run -t alpine echo hello  
       - name: Save to cache if needed
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p ~/docker
           docker save --output ~/alpine.tar.gz alpine
