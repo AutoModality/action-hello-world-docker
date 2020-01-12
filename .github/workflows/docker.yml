@@ -7,8 +7,8 @@ jobs:
     env:
       docker-image: alpine
       docker-tag: 3.10
-      docker-image-tag: ${docker-image}:${docker-tag}
-      docker-image-path: ${docker-image}:${docker-tag}
+      docker-image-tag: $docker-image:$docker-tag
+      docker-image-path: $docker-image:$docker-tag
       docker-cache-dir: ~/docker
       docker-filename: $docker-cache-dir/$docker-image.tar.gz
     steps:
@@ -17,14 +17,15 @@ jobs:
         id: docker-cache
         uses: actions/cache@v1
         with:
-          path: ${docker-cache-dir}
+          path: ${{ docker-cache-dir }}
           key: docker10
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
+          echo $docker-cache-dir
           mkdir -p $docker-cache-dir
-          docker save --output ${docker-filename} ${docker-image-path}
-          ls -l ${docker-cache-dir}
+          docker save --output $docker-filename $docker-image-path
+          ls -l $docker-cache-dir
       - name: Load docker from cache
         run: |
           ls -l ${docker-cache-dir}
