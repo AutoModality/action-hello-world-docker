@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Caching for Docker
     env:
-      DOCKER_IMAGE: alpine:310
+      DOCKER_IMAGE: alpine:3.10
       DOCKER_FILENAME: ~/docker-alpine-3.10.tar.gz
     steps:
       - uses: actions/checkout@v1   
@@ -13,17 +13,15 @@ jobs:
         id: docker-cache
         uses: actions/cache@v1
         with:
-          path: $DOCKER_FILENAME
-          key: $DOCKER_IMAGE
+          path: ~/docker-alpine-3.10.tar.gz
+          key: apline-1
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
           echo filename = $DOCKER_FILENAME
           docker save --output $DOCKER_FILENAME $DOCKER_IMAGE
-          ls -l $docker-cache-dir
       - name: Load docker from cache
         run: |
-          ls -l ${docker-cache-dir}
           docker load --input $DOCKER_FILENAME
       - run: docker run -t $DOCKER_IMAGE echo hello  
       - name: Local docker action uses cache
