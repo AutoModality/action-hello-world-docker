@@ -17,6 +17,7 @@ jobs:
           ls -l ~/docker
           docker load --input ~/docker/alpine.tar.gz
       - run: docker run -t alpine echo hello  
+      - uses: ./ #uses alpine in the action's Dockerfile
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
