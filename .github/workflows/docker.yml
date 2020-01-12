@@ -18,7 +18,7 @@ jobs:
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
-          echo filename = $DOCKER_FILENAME
+          mkdir -p ~/
           docker save --output $DOCKER_FILENAME $DOCKER_IMAGE
       - name: Load docker from cache
         run: |
