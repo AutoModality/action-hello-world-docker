@@ -19,7 +19,7 @@ jobs:
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p ~/docker
-          docker save --output "$DOCKER_FILENAME" $DOCKER_IMAGE
+          docker save --output ~/docker-alpine-3.10.tar.gz $DOCKER_IMAGE
         shell: bash
       - name: Load docker from cache
         run: |
