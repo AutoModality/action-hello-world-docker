@@ -9,15 +9,17 @@ jobs:
         id: docker-cache
         uses: actions/cache@v1
         with:
-          path: ~/
-          key: docker1
+          path: ~/docker
+          key: docker2
       - name: Load docker from cache
         if: steps.cache.outputs.cache-hit == 'true'
-        run: docker load --input ~/alpine.tar.gz
+        run: docker load --input ~/docker/alpine.tar.gz
       - run: docker run -t alpine echo hello  
       - name: Save to cache if needed
         if: steps.cache.outputs.cache-hit != 'true'
-        run: docker save --output ~/alpine.tar.gz alpine
+        run: |
+          mkdir -p ~/docker
+          docker save --output ~/alpine.tar.gz alpine
 
 
 
