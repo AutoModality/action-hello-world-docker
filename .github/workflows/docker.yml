@@ -18,7 +18,10 @@ jobs:
           ls -l ~/docker
           docker load --input ~/docker/alpine.tar.gz
       - run: docker run -t alpine echo hello  
-      - uses: ./ #uses alpine in the action's Dockerfile
+      - name: Local docker action uses cache
+        uses: ./ #uses alpine in the action's Dockerfile
+      - name: External docker action should use cache
+        uses: /actoins/action-hello-world-docker 
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
