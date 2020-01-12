@@ -12,17 +12,16 @@ jobs:
         with:
           path: ~/docker
           key: docker6
-      - name: Load docker from cache
-        if: steps.docker-cache.outputs.cache-hit == 'true'
-        run: |
-          ls -l ~/docker
-          docker load --input ~/docker/alpine.tar.gz
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p ~/docker
           docker save --output ~/docker/alpine.tar.gz alpine
           ls -l ~/docker
+      - name: Load docker from cache
+        run: |
+          ls -l ~/docker
+          docker load --input ~/docker/alpine.tar.gz
       - run: docker run -t alpine echo hello  
       - name: Local docker action uses cache
         uses: ./ #uses alpine in the action's Dockerfile
