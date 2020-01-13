@@ -43,7 +43,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ${{ env.DOCKER_CACHE_DIR }}
-          key: docker-alpine-script-practice-2
+          key: docker-alpine-script-practice-3
       - name: Setup Docker Image
         run: .github/docker-cache.sh $DOCKER_CACHE_DIR
       - run: docker run -t alpine:3.10 echo hello  
