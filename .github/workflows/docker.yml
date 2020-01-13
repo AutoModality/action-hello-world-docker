@@ -13,7 +13,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/docker
-          key: docker-alpine-3.10
+          key: docker-alpine-practice-1
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
