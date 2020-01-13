@@ -9,8 +9,6 @@ set -e
 cache_dir=${1-~/tmp/docker}
 dockerfile_from_line=$(head -n 1 Dockerfile)
 
-echo "line  $dockerfile_from_line"
-
 docker_image=$(awk -F' '  '{print $2}' <<< $dockerfile_from_line)
 
 archive_file=$cache_dir/cache.tar.gz
