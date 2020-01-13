@@ -47,7 +47,7 @@ jobs:
     - name: Environment variables
       run: |
         echo Global=$GLOBAL_ENV job=$JOB_ENV step=$STEP_ENV
-        echo Using expressions: ${{ env.GLOBAL_ENV env.JOB_ENV env.STEP_ENV }}
+        echo Using expressions: ${{ env.GLOBAL_ENV }} ${{ env.JOB_ENV }} ${{ env.STEP_ENV }}
       env:
         STEP_ENV: from this step 
 
