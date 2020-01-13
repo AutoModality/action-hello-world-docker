@@ -1,9 +1,13 @@
 name: Hello World Action
 on: push
+env: 
+  GLOBAL_ENV: from global
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     name: A job to say hello
+    env:
+      JOB_ENV: from hello_world_job
     steps:
     - name: Checkout
       uses: actions/checkout@v1      
@@ -40,6 +44,10 @@ jobs:
         echo major ${{ steps.semantic.outputs.new_release_major_version }}
         echo minor ${{ steps.semantic.outputs.new_release_minor_version }}
         echo patch ${{ steps.semantic.outputs.new_release_patch_version }}
+    - name: Environment variables
+      run: Global=$GLOBAL_ENV job=$JOB_ENV step=$STEP_ENV
+      env:
+        STEP_ENV: from this step 
 
 
 
