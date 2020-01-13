@@ -6,7 +6,7 @@ jobs:
     name: Caching for Docker
     env:
       DOCKER_IMAGE: alpine:3.10
-      
+      DOCKER_FILENAME: ~/docker/docker.tar.gz
     steps:
       - uses: actions/checkout@v1   
       - name: Cache setup for Docker
@@ -19,10 +19,10 @@ jobs:
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p ~/docker
-          docker save --output ~/docker/docker.tar.gz $DOCKER_IMAGE
+          docker save --output $DOCKER_FILENAME $DOCKER_IMAGE
       - name: Load docker from cache
         run: |
-          docker load --input  ~/docker/docker.tar.gz
+          docker load --input $DOCKER_FILENAME
       - run: docker run -t $DOCKER_IMAGE echo hello  
       - name: Local docker action uses cache
         uses: ./ #uses alpine in the action's Dockerfile
