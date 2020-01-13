@@ -46,7 +46,7 @@ jobs:
           key: docker-alpine-script-practice-2
       - name: Setup Docker Image
         run: .github/docker-cache.sh $DOCKER_CACHE_DIR
-      - run: docker run -t alpine echo hello  
+      - run: docker run -t alpine:3.10 echo hello  
       - name: Local docker action uses cache
         uses: ./ #uses alpine in the action's Dockerfile
       # enable to demonstrate external actions eager building
