@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Caching for Docker
     env:
-      DOCKER_IMAGE: alpine@sha256:965ea09ff2ebd2b9eeec88cd822ce156f6674c7e99be082c7efac3c62f3ff652 #Tag=3.10
+      DOCKER_IMAGE: alpine:3.10
     steps:
       - uses: actions/checkout@v1   
       - name: Cache setup for Docker
@@ -13,10 +13,11 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/docker
-          key: docker-alpine-practice1
+          key: docker-alpine-3.10
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
         run: |
+          docker pull alpine@sha256:965ea09ff2ebd2b9eeec88cd822ce156f6674c7e99be082c7efac3c62f3ff652 #specific version for 3:10
           mkdir -p ~/docker
           docker save --output ~/docker/docker.tar.gz $DOCKER_IMAGE
       - name: Load docker from cache
