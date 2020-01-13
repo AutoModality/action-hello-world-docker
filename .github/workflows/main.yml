@@ -45,7 +45,9 @@ jobs:
         echo minor ${{ steps.semantic.outputs.new_release_minor_version }}
         echo patch ${{ steps.semantic.outputs.new_release_patch_version }}
     - name: Environment variables
-      run: Global=$GLOBAL_ENV job=$JOB_ENV step=$STEP_ENV
+      run: |
+        echo Global=$GLOBAL_ENV job=$JOB_ENV step=$STEP_ENV
+        echo Using expressions: ${{ env.GLOBAL_ENV }}
       env:
         STEP_ENV: from this step 
 
