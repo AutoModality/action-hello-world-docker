@@ -7,13 +7,14 @@ jobs:
     env:
       DOCKER_IMAGE: alpine:3.10
       DOCKER_VERSION: alpine@sha256:2171658620155679240babee0a7714f6509fae66898db422ad803b951257db78
+      DOCKER_CACHE_DIR: ~/docker
     steps:
       - uses: actions/checkout@v1   
       - name: Cache setup for Docker
         id: docker-cache
         uses: actions/cache@v1
         with:
-          path: ~/docker
+          path: ${{ env.DOCKER_CACHE_DIR }}
           key: docker-alpine-practice-1
       - name: Save to cache if needed
         if: steps.docker-cache.outputs.cache-hit != 'true'
