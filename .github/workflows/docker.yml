@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Script Caching for Docker
     env:
-      DOCKER_CACHE_DIR: ~/docker
+      DOCKER_CACHE_DIR: ~/tmp/docker
     steps:
       - uses: actions/checkout@v1   
       - name: Cache setup for Docker

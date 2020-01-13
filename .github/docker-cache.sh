@@ -1,22 +1,30 @@
 #!/bin/bash
 
-# given the directory that the Github Actions cache will use, this will load the image from cache making it available
+# reads the Dockerfile for the docker image name and sets it up for caching.
+# NOTE: the first line of the Dockerfile must be `FROM docker-image`
+
+set -e
 
 # see BB-790 
-cache_dir=${1-:$(mktemp)}
-docker_image=$(cat .github/docker-image.txt)
-docker_version=$(cat .github/docker-version.txt)
+cache_dir=${1-~/tmp/docker}
+dockerfile_from_line=$(head -n 1 Dockerfile)
+
+echo "line  $dockerfile_from_line"
+
+docker_image=$(awk -F' '  '{print $2}' <<< $dockerfile_from_line)
 
 archive_file=$cache_dir/cache.tar.gz
 
-echo "Docker Image = $docker_image -> $docker_version"
+echo "Docker Image = $docker_image"
 
 # pull and save the image to the cache file
 if [[ ! -f "$archive_file" ]]; then
     mkdir -p $cache_dir
-    docker pull $docker_version
+    docker pull $docker_image
     echo "Saving $docker_image to $archive_file"
-    docker save --output $archive_file $docker_version
+    docker save --output $archive_file $docker_image
+else
+    echo "Image found in $archive_file"
 fi
 
 echo "Loading $docker_image from $archive_file"
