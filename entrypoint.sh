@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash
 
 who_to_greet=$1
 staging_dir=/github/home

@@ -31,6 +31,27 @@ jobs:
       # enable to demonstrate external actions eager building
       # - name: External docker action should use cache
       #   uses: AutoModality/action-hello-world-docker@v1 
+  caching-script:
+    runs-on: ubuntu-latest
+    name: Script Caching for Docker
+    env:
+      DOCKER_CACHE_DIR: ~/docker
+    steps:
+      - uses: actions/checkout@v1   
+      - name: Cache setup for Docker
+        id: docker-cache
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.DOCKER_CACHE_DIR }}
+          key: docker-alpine-script-practice-2
+      - name: Setup Docker Image
+        run: .github/docker-cache.sh $DOCKER_CACHE_DIR
+      - run: docker run -t $DOCKER_IMAGE echo hello  
+      - name: Local docker action uses cache
+        uses: ./ #uses alpine in the action's Dockerfile
+      # enable to demonstrate external actions eager building
+      # - name: External docker action should use cache
+      #   uses: AutoModality/action-hello-world-docker@v1 
 
 
 
