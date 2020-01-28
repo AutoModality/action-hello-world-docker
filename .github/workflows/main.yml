@@ -35,7 +35,7 @@ jobs:
     - run: cat ${{ steps.hello.outputs.file }}
     - name: Semantic Release
       id: semantic   # `id` for output variables
-      uses: cycjimmy/semantic-release-action@master
+      uses: AutoModality/semantic-release-action@node-warning
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Release Versions
