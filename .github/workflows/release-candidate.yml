@@ -1,0 +1,27 @@
+name: Release Candidate
+on: 
+  pull_request:
+    branches:
+      - master
+jobs:
+  release-candidate:
+    runs-on: ubuntu-latest
+    name: Release Candidate Demo
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1      
+    - name: Generate build number
+      id: buildnumber
+      uses: einaregilsson/build-number@v2 
+      with:
+        branch: ${{ steps.current.outputs.branch }}
+        token: ${{secrets.github_token}}
+    - name: Release Candidate Found
+      run: |
+        # {PR #}-{Issue Key}.{build number}
+        echo version ${{ github.event.number }}.${{ github.event.pull_request.head.ref }}.${{ steps.buildnumber.outputs.build_number }}
+
+
+
+
+
