@@ -1,3 +1,4 @@
+name: Release Race
 on:
   - push
 jobs:
@@ -14,3 +15,6 @@ jobs:
         uses: cycjimmy/semantic-release-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy
+        if: steps.semantic.outputs.new_release_published == 'true'
+        run: echo "${{ steps.package.outputs.artifact-path }} will be deployed"
