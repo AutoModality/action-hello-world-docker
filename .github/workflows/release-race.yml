@@ -12,15 +12,17 @@ jobs:
         uses: cycjimmy/semantic-release-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Write release to file
+      - name: Write release result to file
+        run: echo ${{ steps.semantic.outputs.new_release_published }} > release/published.txt
+      - name: Write version to file
         if: steps.semantic.outputs.new_release_published == 'true'
-        run: echo ${{ steps.semantic.outputs.new_release_version }} > release-version.txt
+        run: echo ${{ steps.semantic.outputs.new_release_version }} > release/version.txt
       - name: Share release file with other jobs
         uses: actions/upload-artifact@v1
         if: steps.semantic.outputs.new_release_published == 'true'
         with:
           name: release
-          path: release-version.txt
+          path: release
   deploy:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -32,8 +34,12 @@ jobs:
       - name: Download release version, if available
         uses: actions/download-artifact@v1
         with:
-          name: release-version
+          name: release
       - name: Deploy
         run: |
-          version=$(cat release/release-version.txt)
-          echo "${{ steps.semantic.outputs.new_release_version }} will be deployed"
+          published=$(cat release/published.txt)
+          echo Release published: $published
+          if [[ $published == true ]]; then 
+            version=$(cat release/version.txt)
+            echo "$version will be deployed"
+          fi
