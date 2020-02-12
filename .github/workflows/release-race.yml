@@ -33,7 +33,7 @@ jobs:
     needs: release
     name: Deploy if released
     steps:
-      - name: Download release version, if available
+      - name: Download release
         uses: actions/download-artifact@v1
         with:
           name: release
