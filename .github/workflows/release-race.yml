@@ -13,7 +13,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Write release result to file
-        run: echo ${{ steps.semantic.outputs.new_release_published }} > release/published.txt
+        run: |
+          mkdir release
+          echo ${{ steps.semantic.outputs.new_release_published }} > release/published.txt
       - name: Write version to file
         if: steps.semantic.outputs.new_release_published == 'true'
         run: echo ${{ steps.semantic.outputs.new_release_version }} > release/version.txt
