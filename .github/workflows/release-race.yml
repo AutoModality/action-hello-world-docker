@@ -1,4 +1,4 @@
-name: Release Race
+name: Release and Deploy
 on:
   - push
 jobs:
@@ -7,9 +7,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Delay the loser
-        if: runner.os == 'Linux'
-        run: sleep 60s
       - name: Semantic Release
         id: semantic
         uses: cycjimmy/semantic-release-action@v2
@@ -22,7 +19,7 @@ jobs:
         uses: actions/upload-artifact@v1
         if: steps.semantic.outputs.new_release_published == 'true'
         with:
-          name: release-version
+          name: release
           path: release-version.txt
   deploy:
     runs-on: ${{ matrix.os }}
@@ -38,5 +35,5 @@ jobs:
           name: release-version
       - name: Deploy
         run: |
-          version=$(cat release-version.txt)
+          version=$(cat release/release-version.txt)
           echo "${{ steps.semantic.outputs.new_release_version }} will be deployed"
