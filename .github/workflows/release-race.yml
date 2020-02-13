@@ -52,11 +52,11 @@ jobs:
       - run: echo published=${{ steps.published.outputs.value }}
       - name: Read value from Properties-file
         id: version
-        if: steps.published.outputs.value == "true"
+        if: steps.published.outputs.value == 'true'
         uses: christian-draeger/read-properties@1.0.1
         with:
           path: 'release/release.properties'
           property: 'version'
       - name: Deploy
-        if: steps.published.outputs.value == "true"
+        if: steps.published.outputs.value == 'true'
         run: echo Deploying ${{ steps.versions.outputs.value }}
