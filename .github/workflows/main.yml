@@ -35,7 +35,7 @@ jobs:
     - name: Env. variable from file contents
       run: echo $CONTENTS
       env:
-        CONTENTS: ${{ cat steps.hello.outputs.file }}
+        CONTENTS: ${{ steps.hello.outputs.file }}
     - name: Environment variables
       run: |
         echo Using bash: Global=$GLOBAL_ENV job=$JOB_ENV step=$STEP_ENV
