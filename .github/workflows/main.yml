@@ -41,7 +41,7 @@ jobs:
         local="from bash"
         echo Using bash: Global=$GLOBAL_ENV job=$JOB_ENV step=$STEP_ENV local=$local
         echo Using expressions: gobal=${{ env.GLOBAL_ENV }} job=${{ env.JOB_ENV }} step=${{ env.STEP_ENV }}
-        echo Step results: ${{ steps.hello.outputs.file }}
+        echo Step results: ${{ steps.hello.outputs.file }}"
       env:
         STEP_ENV: from this step 
 
