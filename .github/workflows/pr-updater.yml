@@ -13,4 +13,4 @@ jobs:
         - name: update all pull requests
           uses: maxkomarychev/pr-updater-action@v1.0.0
           with:
-              token: ${{ secrets.USER_TOKEN }}
+              token: ${{ secrets.GITHUB_TOKEN }}
