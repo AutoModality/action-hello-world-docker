@@ -38,7 +38,8 @@ jobs:
         CONTENTS: ${{ steps.hello.outputs.file }}
     - name: Environment variables
       run: |
-        echo Using bash: Global=$GLOBAL_ENV job=$JOB_ENV step=$STEP_ENV
+        local="from bash"
+        echo Using bash: Global=$GLOBAL_ENV job=$JOB_ENV step=$STEP_ENV local=$local
         echo Using expressions: gobal=${{ env.GLOBAL_ENV }} job=${{ env.JOB_ENV }} step=${{ env.STEP_ENV }}
       env:
         STEP_ENV: from this step 
