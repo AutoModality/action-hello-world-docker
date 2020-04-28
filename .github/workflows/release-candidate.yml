@@ -1,5 +1,8 @@
 name: Release Candidate
 on: 
+  push:
+    branches-ignore:
+      - master
   pull_request:
     branches:
       - master
@@ -9,14 +12,11 @@ jobs:
     name: Release Candidate Demo
     steps:
     - name: Checkout
-      uses: actions/checkout@v1      
-    - name: Generate build number
-      id: buildnumber
-      uses: einaregilsson/build-number@v2 
-      with:
-        branch: ${{ steps.current.outputs.branch }}
-        token: ${{secrets.github_token}}
+      uses: actions/checkout@v1  
+    - name: Run always
+      run: echo "Both Push and Pull"    
     - name: Release Candidate Found
+      if: github.event_name == 'pull_request'
       run: |
         # {PR #}-{Issue Key}.{build number}
         echo version ${{ github.event.number }}.${{ github.event.pull_request.head.ref }}.${{ steps.buildnumber.outputs.build_number }}
