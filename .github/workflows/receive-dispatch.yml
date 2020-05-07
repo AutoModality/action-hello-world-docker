@@ -19,12 +19,5 @@ jobs:
           echo ${{ github.event.client_payload.new_release_notes }}
           patch_version=${{ github.event.client_payload.new_release_patch_version }}
           minor_version=${{ github.event.client_payload.new_release_minor_version }}
-          if [[ "$patch_version" == "0" ]]
-          then
-            if [[ "$minor_version" == "0" ]]
-            then
-              echo "Major Version"
-            else
-              echo "Minor Version"
-          else
-            echo "Patch Version"
+          echo "$minor_version"
+          echo "$patch_version"
