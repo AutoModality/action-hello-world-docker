@@ -1,0 +1,13 @@
+on: [push]
+
+jobs:
+  dispatch_event:
+    runs-on: ubuntu-latest
+    name: Dispatch event
+
+    steps:
+    - uses: juztcode/repo-ditpatch-action@v1
+      with:
+        event-type: test_event
+        token: ${{ secrets.REPO_ACCESS_TOKEN }}
+        repository: AutoModality/hello-world-javascript-action
