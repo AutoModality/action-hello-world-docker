@@ -14,5 +14,6 @@ jobs:
           repo: hello-world-javascript-action
           owner: AutoModality
           event_type: sample_push
-          payload: "{}"
+          payload: "{'hello':'world'}"
           debug: 1
+          
