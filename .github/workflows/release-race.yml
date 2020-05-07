@@ -69,4 +69,3 @@ jobs:
       - name: Deploy
         if: steps.published.outputs.value == 'true'
         run: echo Deploying ${{ steps.version.outputs.value }}
-
