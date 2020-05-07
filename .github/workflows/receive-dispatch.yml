@@ -3,7 +3,7 @@ on:
   repository_dispatch:
     types: [release]
 jobs:
-  myEvent:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
