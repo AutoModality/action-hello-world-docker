@@ -11,7 +11,7 @@ jobs:
         with:
           # You should create a personal access token and store it in your repository
           token: ${{ secrets.PR_UPDATER_TOKEN }}
-          repo: hello-world-javascript-action
+          repo: action-hello-world-docker
           owner: AutoModality
           event_type: sample_push
           payload: "{'hello':'world'}"
