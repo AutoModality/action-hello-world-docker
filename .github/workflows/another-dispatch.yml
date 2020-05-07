@@ -10,4 +10,5 @@ jobs:
       with:
         event-type: opened
         token: ${{ secrets.PR_UPDATER_TOKEN }}
-        repository: AutoModality/hello-world-javascript-action
+        repository: AutoModality/action-hello-world-docker
+        
