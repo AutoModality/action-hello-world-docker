@@ -39,7 +39,7 @@ jobs:
           token: ${{ secrets.PR_UPDATER_TOKEN }}
           repository: AutoModality/action-hello-world-docker
           event-type: release
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "package":"ros-melodic-example", "new_release_version": "${{ steps.semantic.outputs.new_release_version }}", "new_release_major_version": "${{ steps.semantic.outputs.new_release_major_version }}", "new_release_minor_version":"${{ steps.semantic.outputs.new_release_minor_version }}","new_release_patch_version":"${{ steps.semantic.outputs.new_release_patch_version }}"}'
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "package":"ros-melodic-example", "new_release_version": "${{ steps.semantic.outputs.new_release_version }}", "new_release_major_version": "${{ steps.semantic.outputs.new_release_major_version }}", "new_release_minor_version":"${{ steps.semantic.outputs.new_release_minor_version }}","new_release_patch_version":"${{ steps.semantic.outputs.new_release_patch_version }},"new_release_notes": "${{ steps.semantic.outputs.new_release_notes }}"}'
   deploy:
     runs-on: ${{ matrix.os }}
     strategy:
