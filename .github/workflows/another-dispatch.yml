@@ -8,6 +8,6 @@ jobs:
     steps:
     - uses: juztcode/repo-ditpatch-action@v1
       with:
-        event-type: test_event
+        event-type: sample_push
         token: ${{ secrets.PR_UPDATER_TOKEN }}
         repository: AutoModality/hello-world-javascript-action
